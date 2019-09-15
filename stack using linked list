@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<limits.h>
+#include<string.h>
+struct linked
+{
+    int data;
+    struct linked *next;
+}*head=NULL;
+void push(int d)
+{
+    struct linked *t,*temp;
+    t=(struct linked *)malloc(sizeof(struct linked));
+    if(t==NULL)
+    {
+        printf("memory is not  allocated ....\ntry again........\n");
+        return;
+    }
+    t->data=d;
+    t->next=head;
+    head=t;
+}
+int  pop()
+{
+    struct linked *temp,*t;
+    int ret;
+    if(head==NULL)
+        return INT_MIN;
+    t=head;
+    ret=head->data;
+    head=head->next;
+    free(t);
+    return ret;
+}
+void display()
+{
+    struct linked *t;
+    t=head;
+    if(t==NULL)
+    {
+    printf("Stack is empty\n");
+    return;
+    }
+    while(t->next!=NULL)
+    {
+        printf("%d  <- ",t->data);
+        t=t->next;
+    }
+    printf("%d\n",t->data);
+}
+int main()
+{
+    int data,ch,ret;
+    while(1)
+    {
+        printf("1. push 2.pop 3.display 4.exit\n");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1: printf("enter value to insert \n");
+                    scanf("%d",&data);
+                    push(data);
+                    break;
+            case 2: ret=pop();
+                    if(ret==INT_MIN)
+                        printf("stack is empty\n");
+                    else 
+                    printf("%d is popped from stack\n",ret);
+                    break;
+            case 3:display();
+                    break;
+            case 4:exit(0);
+            default : printf("invalid input... try again\n");
+        }
+    }
+    return 0;
+}
