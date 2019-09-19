@@ -1,0 +1,12 @@
+#include<stdio.h>
+int main()
+{
+    int a,i;
+    long double prd=1;
+    printf("Enter number to find factorial\n");
+    scanf("%d",&a);
+    for(i=2;i<=a;i++)
+    prd*=i;
+    printf(" %Lf ",prd);
+    return 0;
+}
